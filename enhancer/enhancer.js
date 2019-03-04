@@ -8,8 +8,12 @@ module.exports = {
     if ( type === 'armor' && enhancement < 5) {
       return item;
     }
+    
+    if ( type === 'weapon' && enhancement < 7) {
+      return item;
+    }
 
-    if(enhancement >= 0 && enhancement <= 14) {
+    if (enhancement >= 0 && enhancement <= 14) {
       item.durability -= 5
     } 
     

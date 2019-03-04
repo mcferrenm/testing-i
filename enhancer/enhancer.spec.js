@@ -107,6 +107,22 @@ describe("enhancer.js", () => {
       
       expect(fail(item)).toEqual(newItem)
     })
+
+    it("should not fail when enhancing armor upto 5", () => {
+      const item = {
+        type: "weapon",
+        enhancement: 6,
+        durability: 100,
+      };
+
+      const newItem = {
+        type: "weapon",
+        enhancement: 6,
+        durability: 100,
+      };
+      
+      expect(fail(item)).toEqual(newItem)
+    })
   });
 });
 
