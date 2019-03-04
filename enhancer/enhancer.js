@@ -1,6 +1,6 @@
 module.exports = {
   success: function(item) {
-    return item;
+    return {...item, enhancement: item.enhancement + 1};
   },
   fail: function(item) {
     return item;
