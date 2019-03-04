@@ -82,6 +82,15 @@ describe("enhancer.js", () => {
       
       expect(fail(item).enhancement).toBe(14);
     })
+
+    it("should not change enhanced if enhancement is 15 or higher && durability is below 10", () => {
+      const item = {
+        enhancement: 15,
+        durability: 9
+      };
+      
+      expect(fail(item).enhancement).toBe(15);
+    })
   });
 });
 

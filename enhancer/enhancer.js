@@ -16,9 +16,13 @@ module.exports = {
       item.enhancement -= 1
     }
 
-    // if(enhancement <= 14 && durability < 25) {
-    //   item.enhancement = enhancement
-    // }
+    if (enhancement <= 14 && durability < 25) {
+      item.enhancement = enhancement
+    }
+
+    if (enhancement >= 15 && durability < 10) {
+      item.enhancement = enhancement
+    }
     return item;
   },
   repair: function(item) {
