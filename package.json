@@ -1,0 +1,23 @@
+{
+  "name": "testing-i",
+  "version": "1.0.0",
+  "description": "Init",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watch --verbose"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mcferrenm/testing-i.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mcferrenm/testing-i/issues"
+  },
+  "homepage": "https://github.com/mcferrenm/testing-i#readme",
+  "devDependencies": {
+    "jest": "^24.1.0"
+  }
+}
