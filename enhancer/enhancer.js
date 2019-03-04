@@ -3,6 +3,9 @@ module.exports = {
     return {...item, enhancement: item.enhancement + 1};
   },
   fail: function(item) {
+    if(item.enhancement >= 0 && item.enhancement <= 14) {
+      item.durability -= 5
+    }
     return item;
   },
   repair: function(item) {

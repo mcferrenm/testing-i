@@ -20,7 +20,7 @@ describe("enhancer.js", () => {
         durability: 100
       };
 
-      expect(repair(item)).toEqual(newItem)
+      expect(repair(item)).toEqual(newItem);
     });
   });
 
@@ -30,7 +30,6 @@ describe("enhancer.js", () => {
     });
 
     it("should increment enhancement by 1", () => {
-      
       const item = {
         name: "Sword",
         type: "weapon",
@@ -43,13 +42,35 @@ describe("enhancer.js", () => {
         enhancement: 11,
         durability: 100
       };
-      expect(success(item)).toEqual(newItem)
-    })
+      expect(success(item)).toEqual(newItem);
+    });
+  });
+  describe("fail()", () => {
+    it("should be defined", () => {
+      expect(fail).toBeInstanceOf(Function);
+    });
+
+    it("should decrease durability by 5 if enhancement is between 0 and 14", () => {
+      const item = {
+        name: "Sword",
+        type: "weapon",
+        enhancement: 10,
+        durability: 100
+      };
+      const newItem = {
+        name: "Sword",
+        type: "weapon",
+        enhancement: 10,
+        durability: 95
+      };
+
+      expect(fail(item)).toEqual(newItem);
+    });
   });
 });
 
 // const item = {
-//   name: "Sword", 
+//   name: "Sword",
 //   type: "weapon", (weapon or armor)
 //   enhancement: 10, (0 - 20, starts at 0 ends at "PEN")
 //   durability: 100, (0 - 100, starts at 100)
