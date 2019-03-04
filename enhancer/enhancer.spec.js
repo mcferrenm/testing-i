@@ -31,16 +31,10 @@ describe("enhancer.js", () => {
 
     it("should increment enhancement by 1", () => {
       const item = {
-        name: "Sword",
-        type: "weapon",
         enhancement: 10,
-        durability: 100
       };
       const newItem = {
-        name: "Sword",
-        type: "weapon",
         enhancement: 11,
-        durability: 100
       };
       expect(success(item)).toEqual(newItem);
     });
@@ -52,16 +46,25 @@ describe("enhancer.js", () => {
 
     it("should decrease durability by 5 if enhancement is between 0 and 14", () => {
       const item = {
-        name: "Sword",
-        type: "weapon",
         enhancement: 10,
         durability: 100
       };
       const newItem = {
-        name: "Sword",
-        type: "weapon",
         enhancement: 10,
         durability: 95
+      };
+
+      expect(fail(item)).toEqual(newItem);
+    });
+
+    it("should decrease durability by 10 if enhancement is greater than 14", () => {
+      const item = {
+        enhancement: 15,
+        durability: 100
+      };
+      const newItem = {
+        enhancement: 15,
+        durability: 90
       };
 
       expect(fail(item)).toEqual(newItem);
