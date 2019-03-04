@@ -95,10 +95,17 @@ describe("enhancer.js", () => {
     it("should not fail when enhancing armor upto 5", () => {
       const item = {
         type: "armor",
-        enhancement: 5
+        enhancement: 4,
+        durability: 100,
+      };
+
+      const newItem = {
+        type: "armor",
+        enhancement: 4,
+        durability: 100,
       };
       
-      expect(fail(item)).toBe(item)
+      expect(fail(item)).toEqual(newItem)
     })
   });
 });
