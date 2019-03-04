@@ -69,6 +69,10 @@ describe("enhancer.js", () => {
 
       expect(fail(item)).toEqual(newItem);
     });
+    
+    it("should decrement enhancement by 1 if greater than 16", () => {
+      expect(fail({ enhancement: 17 }).enhancement).toBe(16);
+    });
   });
 });
 
