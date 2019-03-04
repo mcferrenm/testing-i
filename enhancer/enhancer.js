@@ -3,7 +3,12 @@ module.exports = {
     return {...item, enhancement: item.enhancement + 1};
   },
   fail: function(item) {
-    const { enhancement, durability } = item;
+    const { type, enhancement, durability } = item;
+
+    if ( type === 'armor' && enhancement < 5) {
+      return item;
+    }
+
     if(enhancement >= 0 && enhancement <= 14) {
       item.durability -= 5
     } 

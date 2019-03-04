@@ -91,6 +91,15 @@ describe("enhancer.js", () => {
       
       expect(fail(item).enhancement).toBe(15);
     })
+
+    it("should not fail when enhancing armor upto 5", () => {
+      const item = {
+        type: "armor",
+        enhancement: 5
+      };
+      
+      expect(fail(item)).toBe(item)
+    })
   });
 });
 
