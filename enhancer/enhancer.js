@@ -3,17 +3,22 @@ module.exports = {
     return {...item, enhancement: item.enhancement + 1};
   },
   fail: function(item) {
-    if(item.enhancement >= 0 && item.enhancement <= 14) {
+    const { enhancement, durability } = item;
+    if(enhancement >= 0 && enhancement <= 14) {
       item.durability -= 5
     } 
     
-    if (item.enhancement > 14) {
+    if (enhancement > 14) {
       item.durability -= 10
     }
 
-    if(item.enhancement > 16) {
+    if(enhancement > 16) {
       item.enhancement -= 1
     }
+
+    // if(enhancement <= 14 && durability < 25) {
+    //   item.enhancement = enhancement
+    // }
     return item;
   },
   repair: function(item) {

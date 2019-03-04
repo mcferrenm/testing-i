@@ -73,6 +73,15 @@ describe("enhancer.js", () => {
     it("should decrement enhancement by 1 if greater than 16", () => {
       expect(fail({ enhancement: 17 }).enhancement).toBe(16);
     });
+
+    it("should not change enhanced if enhancement is 14 or lower && durability is below 25", () => {
+      const item = {
+        enhancement: 14,
+        durability: 24
+      };
+      
+      expect(fail(item).enhancement).toBe(14);
+    })
   });
 });
 
@@ -82,3 +91,6 @@ describe("enhancer.js", () => {
 //   enhancement: 10, (0 - 20, starts at 0 ends at "PEN")
 //   durability: 100, (0 - 100, starts at 100)
 // }
+
+// If the item's enhancement is 14 or lower, the item cannot be enhanced if the durability is below 25.
+// If the item's enhancement is 15 or higher, the item cannot be enhanced if the durability is below 10.
