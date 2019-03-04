@@ -33,11 +33,17 @@ describe("enhancer.js", () => {
       const item = {
         enhancement: 10,
       };
-      const newItem = {
-        enhancement: 11,
-      };
-      expect(success(item)).toEqual(newItem);
+
+      expect(success(item).enhancement).toBe(11);
     });
+
+    it("should modify name to include enhancement level b/t brackets before the item's name", () => {
+      const item = {
+        name: "Slayer",
+        enhancement: 7
+      };
+      expect(success(item).name).toBe("[+8] Slayer")
+    })
   });
   describe("fail()", () => {
     it("should be defined", () => {
@@ -125,13 +131,3 @@ describe("enhancer.js", () => {
     })
   });
 });
-
-// const item = {
-//   name: "Sword",
-//   type: "weapon", (weapon or armor)
-//   enhancement: 10, (0 - 20, starts at 0 ends at "PEN")
-//   durability: 100, (0 - 100, starts at 100)
-// }
-
-// If the item's enhancement is 14 or lower, the item cannot be enhanced if the durability is below 25.
-// If the item's enhancement is 15 or higher, the item cannot be enhanced if the durability is below 10.

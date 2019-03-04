@@ -1,41 +1,48 @@
 module.exports = {
   success: function(item) {
-    return {...item, enhancement: item.enhancement + 1};
+    const { enhancement, name } = item;
+    const newEnhancement = enhancement + 1;
+    const newName = `[+${newEnhancement}] ${name}`;
+    return {
+      ...item,
+      enhancement: newEnhancement,
+      name: newName
+    };
   },
   fail: function(item) {
     const { type, enhancement, durability } = item;
 
-    if ( type === 'armor' && enhancement < 5) {
+    if (type === "armor" && enhancement < 5) {
       return item;
     }
-    
-    if ( type === 'weapon' && enhancement < 7) {
+
+    if (type === "weapon" && enhancement < 7) {
       return item;
     }
 
     if (enhancement >= 0 && enhancement <= 14) {
-      item.durability -= 5
-    } 
-    
-    if (enhancement > 14) {
-      item.durability -= 10
+      item.durability -= 5;
     }
 
-    if(enhancement > 16) {
-      item.enhancement -= 1
+    if (enhancement > 14) {
+      item.durability -= 10;
+    }
+
+    if (enhancement > 16) {
+      item.enhancement -= 1;
     }
 
     if (enhancement <= 14 && durability < 25) {
-      item.enhancement = enhancement
+      item.enhancement = enhancement;
     }
 
     if (enhancement >= 15 && durability < 10) {
-      item.enhancement = enhancement
+      item.enhancement = enhancement;
     }
     return item;
   },
   repair: function(item) {
-    return {...item, durability: 100};
+    return { ...item, durability: 100 };
   }
 };
 
