@@ -1,8 +1,34 @@
 module.exports = {
+  newName: function(name, enhancement) {
+    const enhanceNameMap = {
+      16: "PRI",
+      17: "DUO",
+      18: "TRI",
+      19: "TET",
+      20: "PEN"
+    };
+
+    return `[${enhanceNameMap[enhancement]}] ${name}`;
+  },
   success: function(item) {
     const { enhancement, name } = item;
     const newEnhancement = enhancement + 1;
-    const newName = `[+${newEnhancement}] ${name}`;
+    const enhanceNameMap = {
+      16: "PRI",
+      17: "DUO",
+      18: "TRI",
+      19: "TET",
+      20: "PEN"
+    };
+
+    let newName = "";
+    if (newEnhancement > 15) {
+      // remove old brakcets [+7] with split or something
+      newName = `[${enhanceNameMap[enhancement]}] ${name}`;
+    } else {
+      newName = `[+${newEnhancement}] ${name}`;
+    }
+
     return {
       ...item,
       enhancement: newEnhancement,
@@ -10,13 +36,29 @@ module.exports = {
     };
   },
   fail: function(item) {
-    const { type, enhancement, durability } = item;
+    const enhanceNameMap = {
+      16: "PRI",
+      17: "DUO",
+      18: "TRI",
+      19: "TET",
+      20: "PEN"
+    };
+
+    const { type, enhancement, durability, name } = item;
 
     if (type === "armor" && enhancement < 5) {
       return item;
     }
 
     if (type === "weapon" && enhancement < 7) {
+      return item;
+    }
+
+    if (enhancement <= 14 && durability < 25) {
+      return item;
+    }
+
+    if (enhancement >= 15 && durability < 10) {
       return item;
     }
 
@@ -27,19 +69,20 @@ module.exports = {
     if (enhancement > 14) {
       item.durability -= 10;
     }
+    let newName = ""
 
     if (enhancement > 16) {
       item.enhancement -= 1;
+
+      if (item.name) {
+        newName = `[${enhanceNameMap[item.enhancement]}] ${item.name.substring(6)}`;
+      }
     }
 
-    if (enhancement <= 14 && durability < 25) {
-      item.enhancement = enhancement;
-    }
-
-    if (enhancement >= 15 && durability < 10) {
-      item.enhancement = enhancement;
-    }
-    return item;
+    return {
+      ...item,
+      name: newName
+    };
   },
   repair: function(item) {
     return { ...item, durability: 100 };

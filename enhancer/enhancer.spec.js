@@ -44,6 +44,20 @@ describe("enhancer.js", () => {
       };
       expect(success(item).name).toBe("[+8] Slayer")
     })
+
+    it("should use special names for enhancements 16-20", () => {
+      const item1 = {
+        name: "Slayer",
+        enhancement: 16
+      }
+      const item2 = {
+        name: "Beast",
+        enhancement: 20
+      }
+
+      expect(success(item1).name).toBe("[PRI] Slayer")
+      expect(success(item2).name).toBe("[PEN] Beast")
+    })
   });
   describe("fail()", () => {
     it("should be defined", () => {
@@ -55,12 +69,8 @@ describe("enhancer.js", () => {
         enhancement: 10,
         durability: 100
       };
-      const newItem = {
-        enhancement: 10,
-        durability: 95
-      };
 
-      expect(fail(item)).toEqual(newItem);
+      expect(fail(item).durability).toBe(95);
     });
 
     it("should decrease durability by 10 if enhancement is greater than 14", () => {
@@ -68,12 +78,8 @@ describe("enhancer.js", () => {
         enhancement: 15,
         durability: 100
       };
-      const newItem = {
-        enhancement: 15,
-        durability: 90
-      };
 
-      expect(fail(item)).toEqual(newItem);
+      expect(fail(item).durability).toBe(90);
     });
     
     it("should decrement enhancement by 1 if greater than 16", () => {
@@ -129,5 +135,27 @@ describe("enhancer.js", () => {
       
       expect(fail(item)).toEqual(newItem)
     })
+
+    it("should modify name to include enhancement level b/t brackets before the item's name", () => {
+      const item = {
+        name: "[DUO] Slayer",
+        enhancement: 17
+      };
+      expect(fail(item).name).toBe("[PRI] Slayer")
+    })
+
+    // it("should use special names for enhancements 16-20", () => {
+    //   const item1 = {
+    //     name: "Slayer",
+    //     enhancement: 16
+    //   }
+    //   const item2 = {
+    //     name: "Beast",
+    //     enhancement: 20
+    //   }
+
+    //   expect(success(item1).name).toBe("[PRI] Slayer")
+    //   expect(success(item2).name).toBe("[PEN] Beast")
+    // })
   });
 });
