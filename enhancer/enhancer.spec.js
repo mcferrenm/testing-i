@@ -47,11 +47,11 @@ describe("enhancer.js", () => {
 
     it("should use special names for enhancements 16-20", () => {
       const item1 = {
-        name: "Slayer",
+        name: "[PRI] Slayer",
         enhancement: 16
       }
       const item2 = {
-        name: "Beast",
+        name: "[PEN] Beast",
         enhancement: 20
       }
 

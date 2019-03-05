@@ -22,9 +22,12 @@ module.exports = {
     };
 
     let newName = "";
-    if (newEnhancement > 15) {
+    if (newEnhancement > 15 && item.name) {
       // remove old brakcets [+7] with split or something
-      newName = `[${enhanceNameMap[enhancement]}] ${name}`;
+      
+        newName = `[${enhanceNameMap[item.enhancement]}] ${item.name.substring(6)}`;
+  
+
     } else {
       newName = `[+${newEnhancement}] ${name}`;
     }
